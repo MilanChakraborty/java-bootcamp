@@ -54,4 +54,9 @@ class RectangleTest {
     assertEquals(4, square.area());
     assertEquals(8, square.perimeter());
   }
+
+  @Test
+  void shouldThrowExceptionWhenDimensionsAreNegative() throws InvalidDimensionException {
+    assertThrows(InvalidDimensionException.class, () -> Rectangle.createSquare(-8));
+  }
 }
