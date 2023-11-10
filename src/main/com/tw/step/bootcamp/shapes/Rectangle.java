@@ -9,15 +9,25 @@ public class Rectangle implements TwoDimensionalShape{
     this.breadth = breadth;
   }
 
-  public static Rectangle create(double length, double breadth) {
-    return new Rectangle(length, breadth);
-  }
-
+  @Override
   public double area() {
     return this.length * this.breadth;
   }
 
+  @Override
   public double perimeter() {
     return 2 * (this.length + this.breadth);
+  }
+
+  public static Rectangle create(double length, double breadth) throws InvalidDimensionException {
+    boolean areInvalidDimensions = length < 0 || breadth < 0;
+    if(areInvalidDimensions) {
+      throw new InvalidDimensionException();
+    }
+    return new Rectangle(length, breadth);
+  }
+
+  public static Rectangle createSquare(double side) throws InvalidDimensionException {
+    return create(side, side);
   }
 }
