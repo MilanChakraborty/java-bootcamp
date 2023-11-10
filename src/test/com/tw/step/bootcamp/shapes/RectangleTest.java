@@ -56,7 +56,12 @@ class RectangleTest {
   }
 
   @Test
-  void shouldThrowExceptionWhenDimensionsAreNegative() throws InvalidDimensionException {
+  void shouldThrowExceptionWhenSideIsNegative() {
     assertThrows(InvalidDimensionException.class, () -> Rectangle.createSquare(-8));
+  }
+
+  @Test
+  void shouldThrowExceptionWhenDimensionIsNegative() {
+    assertThrows(InvalidDimensionException.class, () -> Rectangle.create(-8, 4));
   }
 }
