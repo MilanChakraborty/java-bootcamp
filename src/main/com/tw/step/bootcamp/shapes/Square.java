@@ -1,6 +1,6 @@
 package com.tw.step.bootcamp.shapes;
 
-public class Square {
+public class Square implements TwoDimensionalShape{
   private final double side;
 
   private Square(double side) {

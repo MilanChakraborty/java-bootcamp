@@ -1,6 +1,6 @@
 package com.tw.step.bootcamp.shapes;
 
-public class Rectangle {
+public class Rectangle implements TwoDimensionalShape{
   private final double length;
   private final double breadth;
 
