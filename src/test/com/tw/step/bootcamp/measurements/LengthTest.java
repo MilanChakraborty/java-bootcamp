@@ -35,5 +35,6 @@ class LengthTest {
   void oneGallonShouldBeEqualToThreePointSevenEightLiters() throws NegativeMagnitudeException {
     Measurement oneGallon = Measurement.of(1.0d, VolumeUnit.GALLON);
     Measurement threePointSevenEight = Measurement.of(3.78d, VolumeUnit.LITRE);
+    assertEquals(oneGallon, threePointSevenEight);
   }
 }
