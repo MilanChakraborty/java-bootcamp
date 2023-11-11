@@ -1,14 +1,12 @@
 package com.tw.step.bootcamp.measurements;
 
-public enum LengthUnit implements Unit{
-  FEET(30.48),
-  INCH(2.54),
-  CM(1),
-  MM(0.1);
+public enum VolumeUnit implements Unit{
+  GALLON(3.78),
+  LITRE(1);
 
   private final double conversionFactor;
 
-  LengthUnit(double conversionFactor) {
+  VolumeUnit(double conversionFactor) {
     this.conversionFactor = conversionFactor;
   }
 
