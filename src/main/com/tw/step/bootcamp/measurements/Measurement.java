@@ -23,7 +23,15 @@ public class Measurement {
     Measurement otherLength = (Measurement) o;
     Measurement thisToStandard = new Measurement(unit.toStandard(magnitude), LengthUnit.CM);
     Measurement otherToStandard = new Measurement(otherLength.unit.toStandard(otherLength.magnitude), LengthUnit.CM);
-    return Double.compare(thisToStandard.magnitude, otherToStandard.magnitude) == 0 && thisToStandard.unit == otherToStandard.unit;
+    return areMagnitudesEqual(thisToStandard, otherToStandard) && areUnitsEqual(thisToStandard, otherToStandard);
+  }
+
+  private static boolean areUnitsEqual(Measurement thisToStandard, Measurement otherToStandard) {
+    return thisToStandard.unit == otherToStandard.unit;
+  }
+
+  private static boolean areMagnitudesEqual(Measurement thisToStandard, Measurement otherToStandard) {
+    return Double.compare(thisToStandard.magnitude, otherToStandard.magnitude) == 0;
   }
 
   @Override
