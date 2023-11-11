@@ -27,11 +27,10 @@ public class Probability {
   }
 
   public Probability or(Probability anotherChance) throws InvalidChanceException {
-    double chanceOrAnotherChance = (this.probability + anotherChance.probability) - this.and(anotherChance).probability;
-    return Probability.of(chanceOrAnotherChance);
+    return this.not().and(anotherChance.not()).not();
   }
 
-  public Probability inverse() throws InvalidChanceException {
+  public Probability not() throws InvalidChanceException {
     return Probability.of(1 - this.probability);
   }
 

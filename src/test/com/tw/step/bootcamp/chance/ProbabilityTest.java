@@ -20,7 +20,7 @@ class ProbabilityTest {
     Probability probabilityOfEventHappening = Probability.of(0.25);
     Probability expectedProbability = Probability.of(0.75);
 
-    assertEquals(expectedProbability, probabilityOfEventHappening.inverse());
+    assertEquals(expectedProbability, probabilityOfEventHappening.not());
   }
 
   @Test
@@ -33,7 +33,7 @@ class ProbabilityTest {
 
   @Test
   void probabilityOfNotGettingTailsWhenOneCoinFlippedIsHalf() throws InvalidChanceException {
-    Probability chanceOfGettingTails = Probability.of(0.5).inverse();
+    Probability chanceOfGettingTails = Probability.of(0.5).not();
     Probability half = Probability.of(0.5);
 
     assertEquals(chanceOfGettingTails, half);
