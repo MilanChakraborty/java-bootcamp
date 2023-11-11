@@ -35,7 +35,7 @@ public class Measurement {
     if (o == null || this.getClass() != o.getClass()) return false;
     Measurement otherMeasurement = (Measurement) o;
     Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.standard());
-    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), this.unit.standard());
+    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), otherMeasurement.unit.standard());
 
     return areMagnitudesEqual(thisToStandard, otherToStandard) && areUnitsEqual(thisToStandard, otherToStandard);
   }
@@ -48,7 +48,7 @@ public class Measurement {
   public Measurement add(Measurement otherMeasurement) throws IllegalOperationException {
     if (otherMeasurement.unit.getClass() != this.unit.getClass()) throw new IllegalOperationException();
     Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.standard());
-    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), this.unit.standard());
+    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), otherMeasurement.unit.standard());
 
     return new Measurement(thisToStandard.magnitude + otherToStandard.magnitude, this.unit.standard());
   }
