@@ -11,7 +11,7 @@ public enum VolumeUnit implements Unit {
   }
 
   @Override
-  public Unit getStandard() {
+  public Unit standard() {
     return LITRE;
   }
 

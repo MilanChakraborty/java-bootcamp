@@ -1,7 +1,7 @@
 package com.tw.step.bootcamp.measurements.units;
 
 public interface Unit {
-  Unit getStandard();
+  Unit standard();
 
   double toStandard(double magnitude);
 }

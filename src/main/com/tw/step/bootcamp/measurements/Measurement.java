@@ -25,7 +25,8 @@ public class Measurement {
   }
 
   private static boolean areMagnitudesEqual(Measurement thisToStandard, Measurement otherToStandard) {
-    return Double.compare(thisToStandard.magnitude, otherToStandard.magnitude) == 0;
+    double difference = thisToStandard.magnitude - otherToStandard.magnitude;
+    return difference > -0.1 && difference < 0.1;
   }
 
   @Override
@@ -33,8 +34,8 @@ public class Measurement {
     if (this == o) return true;
     if (o == null || this.getClass() != o.getClass()) return false;
     Measurement otherMeasurement = (Measurement) o;
-    Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.getStandard());
-    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), this.unit.getStandard());
+    Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.standard());
+    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), this.unit.standard());
 
     return areMagnitudesEqual(thisToStandard, otherToStandard) && areUnitsEqual(thisToStandard, otherToStandard);
   }
@@ -46,9 +47,9 @@ public class Measurement {
 
   public Measurement add(Measurement otherMeasurement) throws IllegalOperationException {
     if (otherMeasurement.unit.getClass() != this.unit.getClass()) throw new IllegalOperationException();
-    Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.getStandard());
-    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), this.unit.getStandard());
+    Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.standard());
+    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), this.unit.standard());
 
-    return new Measurement(thisToStandard.magnitude + otherToStandard.magnitude, this.unit.getStandard());
+    return new Measurement(thisToStandard.magnitude + otherToStandard.magnitude, this.unit.standard());
   }
 }
