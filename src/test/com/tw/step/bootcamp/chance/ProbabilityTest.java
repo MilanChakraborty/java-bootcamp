@@ -20,7 +20,7 @@ class ProbabilityTest {
     Probability probabilityOfEventHappening = Probability.of(0.25);
     Probability expectedProbability = Probability.of(0.75);
 
-    assertTrue(expectedProbability.equals(probabilityOfEventHappening.inverse()));
+    assertEquals(expectedProbability, probabilityOfEventHappening.inverse());
   }
 
   @Test
@@ -28,7 +28,7 @@ class ProbabilityTest {
     Probability chanceOfGettingTails = Probability.of(0.5);
     Probability half = Probability.of(0.5);
 
-    assertTrue(chanceOfGettingTails.equals(half));
+    assertEquals(chanceOfGettingTails, half);
   }
 
   @Test
@@ -36,7 +36,7 @@ class ProbabilityTest {
     Probability chanceOfGettingTails = Probability.of(0.5).inverse();
     Probability half = Probability.of(0.5);
 
-    assertTrue(chanceOfGettingTails.equals(half));
+    assertEquals(chanceOfGettingTails, half);
   }
 
   @Test
@@ -44,7 +44,7 @@ class ProbabilityTest {
     Probability chanceOfGettingTails = Probability.of(0.5);
     Probability chanceOfGettingTailsOnTwoCoinFlip = chanceOfGettingTails.and(chanceOfGettingTails);
 
-    assertTrue(chanceOfGettingTailsOnTwoCoinFlip.equals(Probability.of(0.25)));
+    assertEquals(chanceOfGettingTailsOnTwoCoinFlip, Probability.of(0.25));
   }
 
   @Test
@@ -52,6 +52,6 @@ class ProbabilityTest {
     Probability chanceOfGettingTails = Probability.of(0.5);
     Probability chanceOfGettingAtleastOneTailOnTwoCoinFlip = chanceOfGettingTails.or(chanceOfGettingTails);
 
-    assertTrue(chanceOfGettingAtleastOneTailOnTwoCoinFlip.equals(Probability.of(0.75)));
+    assertEquals(chanceOfGettingAtleastOneTailOnTwoCoinFlip, Probability.of(0.75));
   }
 }
