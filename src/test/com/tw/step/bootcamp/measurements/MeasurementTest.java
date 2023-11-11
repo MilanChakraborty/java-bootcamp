@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LengthTest {
+class MeasurementTest {
   @Test
   void shouldThrowNegativeMagnitudeExceptionWhenMagnitudeIsNegative() {
     assertThrows(NegativeMagnitudeException.class, () -> Measurement.of(-2, LengthUnit.CM));
@@ -36,5 +36,12 @@ class LengthTest {
     Measurement oneGallon = Measurement.of(1.0d, VolumeUnit.GALLON);
     Measurement threePointSevenEight = Measurement.of(3.78d, VolumeUnit.LITRE);
     assertEquals(oneGallon, threePointSevenEight);
+  }
+
+  @Test
+  void shouldBeAbleToAddTwoMeasurements() throws NegativeMagnitudeException, IllegalOperationException {
+    Measurement twoInch = Measurement.of(2.0d, LengthUnit.INCH);
+    Measurement fourInch = Measurement.of(4.0d, LengthUnit.INCH);
+    assertEquals(twoInch.add(twoInch), fourInch);
   }
 }

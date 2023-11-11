@@ -38,4 +38,9 @@ public class Measurement {
   public int hashCode() {
     return Objects.hash(magnitude, unit);
   }
+
+  public Measurement add(Measurement otherMeasurement) throws IllegalOperationException {
+    if (otherMeasurement.unit != this.unit) throw new IllegalOperationException();
+    return new Measurement(this.magnitude + otherMeasurement.magnitude, this.unit);
+  }
 }
