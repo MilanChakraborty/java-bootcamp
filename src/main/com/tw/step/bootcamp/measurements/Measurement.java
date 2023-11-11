@@ -1,5 +1,10 @@
 package com.tw.step.bootcamp.measurements;
 
+import com.tw.step.bootcamp.measurements.exceptions.IllegalOperationException;
+import com.tw.step.bootcamp.measurements.exceptions.NegativeMagnitudeException;
+import com.tw.step.bootcamp.measurements.units.LengthUnit;
+import com.tw.step.bootcamp.measurements.units.Unit;
+
 import java.util.Objects;
 
 public class Measurement {

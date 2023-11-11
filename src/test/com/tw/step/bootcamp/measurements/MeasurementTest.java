@@ -1,5 +1,9 @@
 package com.tw.step.bootcamp.measurements;
 
+import com.tw.step.bootcamp.measurements.exceptions.IllegalOperationException;
+import com.tw.step.bootcamp.measurements.exceptions.NegativeMagnitudeException;
+import com.tw.step.bootcamp.measurements.units.LengthUnit;
+import com.tw.step.bootcamp.measurements.units.VolumeUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,5 +47,13 @@ class MeasurementTest {
     Measurement twoInch = Measurement.of(2.0d, LengthUnit.INCH);
     Measurement fourInch = Measurement.of(4.0d, LengthUnit.INCH);
     assertEquals(twoInch.add(twoInch), fourInch);
+  }
+
+  @Test
+  void shouldThrowIllegalOperationExceptionWhenMeasurementOfDifferentUnitsAreAdded() throws NegativeMagnitudeException {
+    Measurement twoInch = Measurement.of(2.0d, LengthUnit.INCH);
+    Measurement oneGallon = Measurement.of(1.0d, VolumeUnit.GALLON);
+
+    assertThrows(IllegalOperationException.class, () -> twoInch.add(oneGallon));
   }
 }

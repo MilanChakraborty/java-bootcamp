@@ -1,6 +1,6 @@
-package com.tw.step.bootcamp.measurements;
+package com.tw.step.bootcamp.measurements.units;
 
-public enum LengthUnit implements Unit{
+public enum LengthUnit implements Unit {
   FEET(30.48),
   INCH(2.54),
   CM(1),

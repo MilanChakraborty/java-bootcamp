@@ -1,6 +1,6 @@
-package com.tw.step.bootcamp.measurements;
+package com.tw.step.bootcamp.measurements.units;
 
-public enum VolumeUnit implements Unit{
+public enum VolumeUnit implements Unit {
   GALLON(3.78),
   LITRE(1);
 

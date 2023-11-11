@@ -1,4 +1,4 @@
-package com.tw.step.bootcamp.measurements;
+package com.tw.step.bootcamp.measurements.exceptions;
 
 public class IllegalOperationException extends Throwable {
   public IllegalOperationException() {
