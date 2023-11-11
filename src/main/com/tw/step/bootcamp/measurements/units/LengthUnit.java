@@ -1,10 +1,10 @@
 package com.tw.step.bootcamp.measurements.units;
 
 public enum LengthUnit implements Unit {
-  FEET(30.48),
-  INCH(2.54),
-  CM(1),
-  MM(0.1);
+  FEET(12),
+  INCH(1),
+  CM(0.39),
+  MM(0.039);
 
   private final double conversionFactor;
 
@@ -12,7 +12,13 @@ public enum LengthUnit implements Unit {
     this.conversionFactor = conversionFactor;
   }
 
+  @Override
+  public LengthUnit getStandard() {
+    return INCH;
+  }
+
+  @Override
   public double toStandard(double magnitude) {
-    return magnitude * conversionFactor;
+    return magnitude * this.conversionFactor;
   }
 }

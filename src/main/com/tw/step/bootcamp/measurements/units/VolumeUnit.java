@@ -10,7 +10,13 @@ public enum VolumeUnit implements Unit {
     this.conversionFactor = conversionFactor;
   }
 
+  @Override
+  public Unit getStandard() {
+    return LITRE;
+  }
+
+  @Override
   public double toStandard(double magnitude) {
-    return magnitude * conversionFactor;
+    return magnitude * this.conversionFactor;
   }
 }
