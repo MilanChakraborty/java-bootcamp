@@ -1,13 +1,15 @@
 package com.tw.step.bootcamp.measurements.units;
 
 public enum TemperatureUnit implements Unit {
-  CELSIUS(1),
-  FAHRENHEIT(0);
+  CELSIUS(1.0, 0),
+  FAHRENHEIT(5.0 / 9.0, 32);
 
   private final double conversionFactor;
+  private final double freezingPointOfWater;
 
-  TemperatureUnit(double conversionFactor) {
+  TemperatureUnit(double conversionFactor, double freezingPointOfWater) {
     this.conversionFactor = conversionFactor;
+    this.freezingPointOfWater = freezingPointOfWater;
   }
 
   @Override
@@ -17,7 +19,6 @@ public enum TemperatureUnit implements Unit {
 
   @Override
   public double toStandard(double magnitude) {
-    if (this == FAHRENHEIT) return (magnitude - 32) * (5.0 / 9.0);
-    return magnitude * this.conversionFactor;
+    return (magnitude - this.freezingPointOfWater) * this.conversionFactor;
   }
 }
