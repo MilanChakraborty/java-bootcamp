@@ -17,19 +17,19 @@ public class Measurement {
   }
 
   public static Measurement of(double magnitude, Unit unit) throws NegativeMagnitudeException {
-    if (magnitude < 0 && unit.standard() != TemperatureUnit.CELSIUS) throw new NegativeMagnitudeException();
+    if (magnitude < 0 && unit.getStandardUnit() != TemperatureUnit.CELSIUS) throw new NegativeMagnitudeException();
     return new Measurement(magnitude, unit);
   }
 
   private boolean areMagnitudesEqual(Measurement otherToStandard) {
+    double tolerance = 0.2d;
     double difference = this.toStandard() - otherToStandard.toStandard();
-    return difference > -0.1 && difference < 0.1;
+    return difference > -tolerance && difference < tolerance;
   }
 
   private double toStandard() {
     return this.unit.toStandard(this.magnitude);
   }
-
 
   private boolean areUnitsEqual(Measurement otherToStandard) {
     return this.getStandardUnit() == otherToStandard.getStandardUnit();
@@ -59,6 +59,6 @@ public class Measurement {
   }
 
   private Unit getStandardUnit() {
-    return this.unit.standard();
+    return this.unit.getStandardUnit();
   }
 }

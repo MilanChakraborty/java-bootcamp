@@ -96,4 +96,28 @@ class MeasurementTest {
 
     assertEquals(hundredCelsius, twoHundredTwelveFahrenheit);
   }
+
+  @Test
+  void zeroDegreeCelsiusShouldBeEqualToTwoHundredSeventyThreeKelvin() throws NegativeMagnitudeException {
+    Measurement zeroCelsius = Measurement.of(0.0d, TemperatureUnit.CELSIUS);
+    Measurement twoHundredSeventyThreeKelvin = Measurement.of(273.0d, TemperatureUnit.KELVIN);
+
+    assertEquals(zeroCelsius, twoHundredSeventyThreeKelvin);
+  }
+
+  @Test
+  void hundredDegreeFahrenheitShouldBeEqualToThreeHundredTenPointKelvin() throws NegativeMagnitudeException {
+    Measurement hundredDegreeFahrenheit = Measurement.of(100.0d, TemperatureUnit.FAHRENHEIT);
+    Measurement threeHundredTenPointNineKelvin = Measurement.of(310.9d, TemperatureUnit.KELVIN);
+
+    assertEquals(hundredDegreeFahrenheit, threeHundredTenPointNineKelvin);
+  }
+
+  @Test
+  void zeroKelvinShouldBeEqualToNegativeTwoHundredSeventyThreeDegreeCelsius() throws NegativeMagnitudeException {
+    Measurement zeroKelvin = Measurement.of(0.0d, TemperatureUnit.KELVIN);
+    Measurement negativeTwoHundredSeventyThreeDegreeCelsius = Measurement.of(-273.0d, TemperatureUnit.CELSIUS);
+
+    assertEquals(zeroKelvin, negativeTwoHundredSeventyThreeDegreeCelsius);
+  }
 }

@@ -13,7 +13,7 @@ public enum LengthUnit implements Unit {
   }
 
   @Override
-  public LengthUnit standard() {
+  public LengthUnit getStandardUnit() {
     return INCH;
   }
 

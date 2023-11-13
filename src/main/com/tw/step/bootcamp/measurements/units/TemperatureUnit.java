@@ -2,7 +2,8 @@ package com.tw.step.bootcamp.measurements.units;
 
 public enum TemperatureUnit implements Unit {
   CELSIUS(1.0, 0),
-  FAHRENHEIT(5.0 / 9.0, 32);
+  FAHRENHEIT(5.0 / 9.0, 32),
+  KELVIN(1, 273);
 
   private final double conversionFactor;
   private final double freezingPointOfWater;
@@ -13,7 +14,7 @@ public enum TemperatureUnit implements Unit {
   }
 
   @Override
-  public Unit standard() {
+  public Unit getStandardUnit() {
     return CELSIUS;
   }
 
