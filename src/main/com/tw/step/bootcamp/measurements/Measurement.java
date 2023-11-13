@@ -2,6 +2,7 @@ package com.tw.step.bootcamp.measurements;
 
 import com.tw.step.bootcamp.measurements.exceptions.IllegalOperationException;
 import com.tw.step.bootcamp.measurements.exceptions.NegativeMagnitudeException;
+import com.tw.step.bootcamp.measurements.units.TemperatureUnit;
 import com.tw.step.bootcamp.measurements.units.Unit;
 
 import java.util.Objects;
@@ -16,17 +17,22 @@ public class Measurement {
   }
 
   public static Measurement of(double magnitude, Unit unit) throws NegativeMagnitudeException {
-    if (magnitude < 0) throw new NegativeMagnitudeException();
+    if (magnitude < 0 && unit.standard() != TemperatureUnit.CELSIUS) throw new NegativeMagnitudeException();
     return new Measurement(magnitude, unit);
   }
 
   private boolean areMagnitudesEqual(Measurement otherToStandard) {
-    double difference = this.unit.toStandard(this.magnitude) - otherToStandard.unit.toStandard(otherToStandard.magnitude);
+    double difference = this.toStandard() - otherToStandard.toStandard();
     return difference > -0.1 && difference < 0.1;
   }
 
+  private double toStandard() {
+    return this.unit.toStandard(this.magnitude);
+  }
+
+
   private boolean areUnitsEqual(Measurement otherToStandard) {
-    return this.unit.standard() == otherToStandard.unit.standard();
+    return this.getStandardUnit() == otherToStandard.getStandardUnit();
   }
 
   @Override
@@ -34,7 +40,7 @@ public class Measurement {
     if (this == o) return true;
     if (o == null || this.getClass() != o.getClass()) return false;
     Measurement otherMeasurement = (Measurement) o;
-    
+
     return this.areMagnitudesEqual(otherMeasurement) && this.areUnitsEqual(otherMeasurement);
   }
 
@@ -46,9 +52,13 @@ public class Measurement {
   public Measurement add(Measurement otherMeasurement) throws IllegalOperationException {
     if (otherMeasurement.unit.getClass() != this.unit.getClass()) throw new IllegalOperationException();
 
-    Measurement thisToStandard = new Measurement(this.unit.toStandard(this.magnitude), this.unit.standard());
-    Measurement otherToStandard = new Measurement(otherMeasurement.unit.toStandard(otherMeasurement.magnitude), otherMeasurement.unit.standard());
+    Measurement thisToStandard = new Measurement(this.toStandard(), this.getStandardUnit());
+    Measurement otherToStandard = new Measurement(otherMeasurement.toStandard(), otherMeasurement.getStandardUnit());
 
-    return new Measurement(thisToStandard.magnitude + otherToStandard.magnitude, this.unit.standard());
+    return new Measurement(thisToStandard.magnitude + otherToStandard.magnitude, this.getStandardUnit());
+  }
+
+  private Unit getStandardUnit() {
+    return this.unit.standard();
   }
 }

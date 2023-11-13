@@ -3,6 +3,7 @@ package com.tw.step.bootcamp.measurements;
 import com.tw.step.bootcamp.measurements.exceptions.IllegalOperationException;
 import com.tw.step.bootcamp.measurements.exceptions.NegativeMagnitudeException;
 import com.tw.step.bootcamp.measurements.units.LengthUnit;
+import com.tw.step.bootcamp.measurements.units.TemperatureUnit;
 import com.tw.step.bootcamp.measurements.units.VolumeUnit;
 import org.junit.jupiter.api.Test;
 
@@ -76,7 +77,7 @@ class MeasurementTest {
     Measurement oneGallon = Measurement.of(1.0d, VolumeUnit.GALLON);
     Measurement oneLitre = Measurement.of(1.0d, VolumeUnit.LITRE);
     Measurement fourPointSevenEightLitre = Measurement.of(4.78d, VolumeUnit.LITRE);
-    
+
     assertEquals(oneGallon.add(oneLitre), fourPointSevenEightLitre);
   }
 
@@ -86,5 +87,13 @@ class MeasurementTest {
     Measurement oneGallon = Measurement.of(1.0d, VolumeUnit.GALLON);
 
     assertThrows(IllegalOperationException.class, () -> twoInch.add(oneGallon));
+  }
+
+  @Test
+  void oneHundredCelsiusShouldBeEqualToTwoHundredTwelveDegreeFahrenheit() throws NegativeMagnitudeException {
+    Measurement hundredCelsius = Measurement.of(100.0d, TemperatureUnit.CELSIUS);
+    Measurement twoHundredTwelveFahrenheit = Measurement.of(212.0d, TemperatureUnit.FAHRENHEIT);
+
+    assertEquals(hundredCelsius, twoHundredTwelveFahrenheit);
   }
 }
